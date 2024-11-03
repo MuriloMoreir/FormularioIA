@@ -1,4 +1,5 @@
 Flask
 pandas
 requests
-scikit-learn
+scikit-learn==1.4.2
+imbalanced-learn
