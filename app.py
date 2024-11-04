@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 import pickle as pkl
 import pandas as pd
 import requests
-from requests import post
+import urllib3
 
 app = Flask(__name__)
 
@@ -78,21 +78,23 @@ def form():
 
         # <-- Chamando API para armazenar no MongoDB-->
 
-        url = "https://example.com/api/endpoint"
+        url = "https://gats-educaeco-api-mongodb.onrender.com/api/resultados/adicionar"
         dados = {
             "nome": respostas["nome"],
             "email": respostas["email"],
             "resultado": previsao_texto
         }
 
-        response = requests.post(url, json=dados)
+        urllib3.disable_warnings()
 
-        if response.status_code == 201:  # Sucesso de criação
+        headers = {'Content-Type': 'application/json'}
+        response = requests.post(url, json=dados, headers=headers, verify=False)
+
+        if response.status_code == 200:  # Sucesso de criação
             print("Requisição bem-sucedida:", response.json())
         else:
             print(f"Erro: {response.status_code}")
             print("Detalhes do erro:", response.text)
-
 
         # Renderizar resultado
         return render_template("result.html", nome=respostas["nome"], predicao=previsao)
