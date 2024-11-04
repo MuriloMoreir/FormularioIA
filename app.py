@@ -7,13 +7,13 @@ import urllib3
 app = Flask(__name__)
 
 # Desserialização do preprocessador
-preprocessador_caminho = r'C:\Users\murilomoreira-ieg\OneDrive - Instituto Germinare\Área de trabalho\Trabalho Interdisciplinar 2°ano\Forms\Formsss\preprocessador.pkl'
+preprocessador_caminho = 'preprocessador.pkl'
 
 with open(preprocessador_caminho, 'rb') as file:
     preprocessador_desserializado = pkl.load(file)
 
 # Desserialização do model
-model_caminho = r'C:\Users\murilomoreira-ieg\OneDrive - Instituto Germinare\Área de trabalho\Trabalho Interdisciplinar 2°ano\Forms\Formsss\model.pkl'
+model_caminho = 'model.pkl'
 
 with open(model_caminho, 'rb') as file:
     model_desserializado = pkl.load(file)
